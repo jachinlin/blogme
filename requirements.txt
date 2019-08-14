@@ -1,0 +1,8 @@
+PyYAML
+jinja2
+docutils
+babel
+werkzeug
+blinker
+pygments
+markdown

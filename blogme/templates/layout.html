@@ -1,0 +1,76 @@
+<!doctype html>
+<html>
+<head>
+    {% block htmlhead %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>{% block title %}Home{% endblock %} | {{ config.get('title') }}</title>
+    <link rel="shortcut icon" href="{{ link_to('post', slug='favicon.ico') }}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" media="screen">
+    <link rel="stylesheet" href="{{ link_to('static', filename='style.css') }}" type="text/css">
+    <link href="/feed.atom" rel="alternate" title=" {{ config.get('title') }}" type="application/atom+xml">
+    {% for link in links %}
+    <link rel="{{ link.rel }}" href="{{ link.href }}" {% if link.media %} media="{{ link.media }}" {% endif %} type="{{ link.type }}">
+    {% endfor %}
+    {% endblock %}
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?{{ config.get('baidu_tongji') }}";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+</head>
+
+<body>
+<div class="box">
+{% block navbar %}
+<div class="container">
+    <nav class="navbar navbar-expand-lg navbar-light py-3" aria-label="Main navigation">
+        <a class="navbar-brand" href="{{ link_to('home') }}">{{ config.get('title') }}</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav align-items-lg-center text-uppercase pt-3 pt-lg-0 ml-auto">
+                <li class="nav-item "><a class="nav-link" href="{{ link_to('home') }}">首页</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ link_to('tagcloud') }}">标签</a></li>
+                {% for page in get_pages() %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ link_to('post', slug=page.slug) }}">{{ page.meta.title }}</a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </nav>
+</div>
+{% endblock %}
+
+{% block body %} {% endblock %}
+
+{% block footer %}
+<div class="container footer">
+    <p>&copy; Copyright {{ format_date(format='YYYY') }} by <a href="http://github.com/jachinlin">Jachin Lin</a>.</p>
+    <p>
+        Contact me via
+        {% if config.get('email') %}
+        <a href="mailto:{{ config.get('email') }}">mail</a> or
+        {% endif %}
+        {% if config.get('github') %}
+        <a href="http://github.com/{{ config.get('github') }}">github</a>
+        {% endif %}
+    </p>
+    <p>
+        Subscribe <a href="/feed.atom" rel="alternate" title="{{ config.get('feed.name') }}">to Atom feed</a>
+    </p>
+</div>
+{% endblock %}
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</div>
+</body>
+</html>

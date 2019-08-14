@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+{% block title %}Blog{% endblock %}
+
+{% block body %}
+<div class="container home-body">
+    <div class="entry-wrapper">
+        {% for entry in pagination.get_slice() %}
+        <div class="row entry-overview">
+            <div class="col-sm-4 col-3 date">{{ format_date(entry.meta.pub_date, format='medium') }}</div>
+            <div class="col-sm-8 col-9 detail">
+                <a href="{{ link_to('post', slug=entry.slug) }}">{{ entry.meta.title }}</a>
+                {% if entry.meta.summary %}
+                <span class="summary"> —— {{ entry.meta.summary }}</span>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% if show_pagination and pagination.pages > 1 %}
+
+    {{ pagination }}
+    {% endif %}
+</div>
+{% endblock %}

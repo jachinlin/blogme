@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+{% block title %}Entries tagged “{{ tag.name }}”{% endblock %}
+{% block body %}
+<div class="container">
+    <h1><a href="{{ link_to('tagcloud') }}">Tag：</a>{{ tag.name }}</h1>
+    <ul>
+        {%- for entry in entries %}
+            <li><a href="{{ link_to('post', slug=entry.slug) }}">{{ entry.meta.title }}</a>
+            {%- if entry.meta.pub_date %}, written on {{ format_date(entry.meta.pub_date, format='long') }}{% endif %}
+        {%- endfor %}
+    </ul>
+</div>
+{% endblock %}
