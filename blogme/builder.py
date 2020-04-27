@@ -291,7 +291,7 @@ class Builder(RouteAndTemplateMixin):
         - run                         // build
         - debug_serve                 // run a dev server
     """
-    default_ignores = ('.*', '_*', 'config.yml', 'Makefile', 'README', '*.conf', )
+    default_ignores = ('.*', '_*', 'config.yml', 'Makefile', 'README.*', '*.conf', )
     default_static_folder = 'static'
 
     def __init__(self, project_folder, config):
