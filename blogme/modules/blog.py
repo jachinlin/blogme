@@ -254,6 +254,12 @@ def copy_builtin_static_files(builder: Builder) -> None:
     shutil.copytree(builtin_static, dest_static_folder)
 
 
+@contextfunction
+def get_navs(context, limit=10):
+    navs = context['builder'].config.get('nav') or []
+    return navs
+
+
 def setup(builder):
 
     before_build.connect(copy_builtin_static_files)
@@ -275,5 +281,6 @@ def setup(builder):
                          config_default='/feed.atom')
     builder.update_jinja_env(
         get_recent_blog_entries=get_recent_blog_entries,
-        get_pages=functools.partial(get_pages, builder)
+        get_pages=functools.partial(get_pages, builder),
+        get_navs=get_navs
     )
