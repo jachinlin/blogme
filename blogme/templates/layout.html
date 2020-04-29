@@ -26,10 +26,10 @@
 </head>
 
 <body>
-<div class="box">
+<div class="container box">
 {% block navbar %}
-<div class="container">
-    <nav class="navbar navbar-expand-lg navbar-light py-3" aria-label="Main navigation">
+<div>
+    <nav class="navbar navbar-expand-lg navbar-light" aria-label="Main navigation">
         <a class="navbar-brand" href="{{ link_to('home') }}">{{ config.get('title') }}</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -52,7 +52,7 @@
 {% block body %} {% endblock %}
 
 {% block footer %}
-<div class="container footer">
+<div class="footer">
     <p>&copy; Copyright {{ format_date(format='YYYY') }} by <a href="http://github.com/jachinlin">Jachin Lin</a>.</p>
     <p>
         Contact me via
@@ -64,13 +64,12 @@
         {% endif %}
     </p>
     <p>
-        Subscribe <a href="/feed.atom" rel="alternate" title="{{ config.get('feed.name') }}">to Atom feed</a>
+        Subscribe to <a href="/feed.atom" rel="alternate" title="{{ config.get('feed.name') }}"> Atom feed</a>
     </p>
 </div>
 {% endblock %}
-
+</div>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-</div>
 </body>
 </html>

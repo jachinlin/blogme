@@ -1,5 +1,5 @@
-<div class="row pagination">
-    <div class="col-sm-12 col-12">
+<div class="mypagination">
+    <div>
         {% if pagination.has_prev %}
         <a href="{{ link_to(pagination.url_key, page=pagination.page - 1) }}">&laquo; Previous</a>
         {% else %}

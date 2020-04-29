@@ -2,12 +2,12 @@
 {% block title %}Blog{% endblock %}
 
 {% block body %}
-<div class="container home-body">
+<div class="home-body">
     <div class="entry-wrapper">
         {% for entry in pagination.get_slice() %}
         <div class="row entry-overview">
-            <div class="col-sm-4 col-3 date">{{ format_date(entry.meta.pub_date, format='medium') }}</div>
-            <div class="col-sm-8 col-9 detail">
+            <div class="col-sm-3 col-2 date">{{ format_date(entry.meta.pub_date, format='medium') }}</div>
+            <div class="col-sm-8 col-10 detail">
                 <a href="{{ link_to('post', slug=entry.slug) }}">{{ entry.meta.title }}</a>
                 {% if entry.meta.summary %}
                 <span class="summary"> —— {{ entry.meta.summary }}</span>

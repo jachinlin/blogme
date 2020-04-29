@@ -2,7 +2,7 @@
 {% block title %}{{ ctx.meta.title }}{% endblock %}
 {% block navbar %}{% endblock %}
 {% block body %}
-<div class="container">
+<div>
     {%- if not config.hide_title %}
         <h1>{{ ctx.meta.title }}</h1>
     {%- endif %}
@@ -10,10 +10,9 @@
     {{ post.content }}
 
     {% if ctx.tags %}
-        <p class=tags>This entry was tagged
+        <p class=tags>标签：
         {% for tag in ctx.tags|sort(case_sensitive=true) %}
-            {%- if not loop.first and not loop.last %}, {% endif -%}
-            {%- if loop.last and not loop.first %} and {% endif %}
+            {%- if not loop.first %}、 {% endif -%}
             <a href="{{ link_to('tag', tag=tag) }}">{{ tag }}</a>
         {%- endfor %}
     {% endif %}
