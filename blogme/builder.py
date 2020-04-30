@@ -254,7 +254,8 @@ class RouteAndTemplateMixin:
         return self._url_adapter.build(_key, values)
 
     def _get_link_filename(self, _key, **values):
-        link = url_unquote(self.link_to(_key, **values)[len(self.prefix_path) + 1:])
+        link = url_unquote(self.link_to(_key, **values)[len(self.prefix_path):])
+        link = link.lstrip('/')
         if not link or link.endswith('/'):
             link += 'index.html'
         return os.path.join(self.dest_folder, link)
@@ -262,8 +263,7 @@ class RouteAndTemplateMixin:
     def open_link_file(self, _key, mode='w', **values):
         filename = self._get_link_filename(_key, **values)
         folder = os.path.dirname(filename)
-        if not os.path.isdir(folder):
-            os.makedirs(folder)
+        os.makedirs(folder, exist_ok=True)
         return open(filename, mode)
 
     def _format_datetime(self, datetime=None, format='medium'):
