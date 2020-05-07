@@ -58,7 +58,7 @@
 
 {% block footer %}
 <div class="footer">
-    <p>&copy; Copyright {{ format_date(format='YYYY') }} by <a href="http://github.com/jachinlin">Jachin Lin</a>.</p>
+    <p>Powered by <a href="https://github.com/jachinlin/blogme"> blogme </a> and &copy; Copyright {{ format_date(format='YYYY') }} by <a href="http://github.com/jachinlin">Jachin Lin</a>.</p>
     <p>
         Contact me via
         {% if config.get('email') %}
@@ -66,10 +66,10 @@
         {% endif %}
         {% if config.get('github') %}
         <a href="http://github.com/{{ config.get('github') }}">github</a>
-        {% endif %}
+        {% endif %}.
     </p>
     <p>
-        Subscribe to <a href="/feed.atom" rel="alternate" title="{{ config.get('feed.name') }}"> Atom feed</a>
+        Subscribe to <a href="/feed.atom" rel="alternate" title="{{ config.get('feed.name') }}"> Atom feed</a>.
     </p>
 </div>
 {% endblock %}
