@@ -1,4 +1,7 @@
 # -*- coding: utf-8 -*-
+"""
+define some kind of file parser
+"""
 
 import os
 import shutil
@@ -14,6 +17,7 @@ from jinja2 import Markup
 from docutils.core import publish_parts
 
 from blogme.constant import *
+from blogme.md_ext import MermaidExtension
 
 
 if TYPE_CHECKING:
@@ -225,14 +229,15 @@ class MDParser(TemplateParser):
     def __init__(self, context: 'FileContext'):
         style = context.config.root_get('modules.pygments.style')
         c = CodeHiliteExtension(
-            pygments_style=style or 'tango',  guess_lang='True')
+            pygments_style=style or 'tango', guess_lang='True')
+        mermaid = MermaidExtension()
         self.md = Markdown(
             output_format='html5',
             safe_mode='escape',
             enable_attributes=True,
             extensions=[
                 'meta', 'fenced_code', 'footnotes', 'attr_list',
-                'def_list', 'tables', 'abbr', c
+                'def_list', 'tables', 'abbr', c, mermaid
             ]
         )
         super().__init__(context)
@@ -249,5 +254,3 @@ class MDParser(TemplateParser):
             content=Markup(parsed),
         )
         return post
-
-

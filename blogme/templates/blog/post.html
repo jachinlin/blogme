@@ -20,6 +20,9 @@
     {% if 'utteranc' in config.active_modules %}
         {{ get_utteranc() }}
     {% endif %}
+    {% if 'mermaid' in config.active_modules %}
+        {{ init_mermaid() }}
+    {% endif %}
 </div>
 {% endblock %}
 {% block footer %}{% endblock %}
