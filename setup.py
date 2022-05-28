@@ -34,8 +34,15 @@ setup(
     packages=find_packages(exclude=['examples', 'tests']),
     package_data={'blogme': ['templates/*', 'templates/blog/*', 'static/*']},
     install_requires=[
-        'PyYAML', 'jinja2', 'docutils', 'babel',
-        'werkzeug', 'blinker', 'pygments', 'markdown'
+        'PyYAML',
+        'MarkupSafe==2.0.1',
+        'Jinja2==2.11.3',
+        'docutils',
+        'babel',
+        'werkzeug',
+        'blinker',
+        'pygments',
+        'markdown',
     ],
     entry_points={
         'console_scripts': [

@@ -1,5 +1,6 @@
 PyYAML
-jinja2
+MarkupSafe==2.0.1
+Jinja2==2.11.3
 docutils
 babel
 werkzeug
