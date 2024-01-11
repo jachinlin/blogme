@@ -36,7 +36,7 @@ setup(
     install_requires=[
         'PyYAML',
         'MarkupSafe==2.0.1',
-        'Jinja2==2.11.3',
+        'Jinja2==3.1.3',
         'docutils',
         'babel',
         'werkzeug',
